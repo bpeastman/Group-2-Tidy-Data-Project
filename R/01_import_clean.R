@@ -9,30 +9,21 @@
 # TASK 2: Extract Mean and Standard Deviation Measurements
 # ============================================================
 
-# STEP 1 - LOCATE AND EXTRACT DATASET
+
+# STEP 1 - LOCATE, DOWNLOAD, AND EXTRACT DATASET
 
 data_dir <- file.path("data", "UCI HAR Dataset")
 zip_path <- file.path("data", "har_dataset.zip")
 
-
-# Extract the supplied dataset if required
-required_training_file <- file.path(
-  data_dir, "train", "X_train.txt"
+# Dataset source provided in the professor's template
+dataset_url <- paste0(
+  "https://d396qusza40orc.cloudfront.net/",
+  "getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 )
 
-if (!file.exists(required_training_file)) {
+dir.create("data", showWarnings = FALSE)
 
-  if (!file.exists(zip_path)) {
-    stop("Dataset ZIP missing: data/har_dataset.zip")
-  }
-
-  cat("Extracting Group 2 dataset...\n")
-
-  unzip(zip_path, exdir = "data")
-}
-
-
-# Confirm required dataset files exist
+# Files required for Tasks 1 and 2
 required_files <- c(
   "features.txt",
   "activity_labels.txt",
@@ -44,11 +35,43 @@ required_files <- c(
   "test/subject_test.txt"
 )
 
-stopifnot(
-  all(file.exists(file.path(data_dir, required_files)))
+# Check whether all files have already been extracted
+dataset_ready <- all(
+  file.exists(file.path(data_dir, required_files))
 )
 
+if (!dataset_ready) {
+
+  # Download only if the original ZIP is unavailable
+  if (!file.exists(zip_path)) {
+    cat("Downloading UCI HAR Dataset...\n")
+
+    download.file(
+      dataset_url,
+      zip_path,
+      mode = "wb"
+    )
+  }
+
+  cat("Extracting UCI HAR Dataset...\n")
+
+  unzip(zip_path, exdir = "data")
+}
+
+# Verify that extraction succeeded
+missing_files <- required_files[
+  !file.exists(file.path(data_dir, required_files))
+]
+
+if (length(missing_files) > 0) {
+  stop(
+    "Dataset setup failed. Missing files: ",
+    paste(missing_files, collapse = ", ")
+  )
+}
+
 cat("Dataset located successfully.\n\n")
+
 
 
 # STEP 2 - LOAD FEATURE METADATA
