@@ -49,9 +49,13 @@ The dataset contains:
 
 - GroupWork.R — Main R script
 - R/01_import_clean.R — Tasks 1 and 2
+- R/02_descriptive_names_variables.R - Tasks 3 and 4
+- R/03_create_tidy_dataset.R - Task 5
 - README.md — Project documentation
 - CodeBook.md — Dataset codebook
 - output/merged_mean_std.csv — Intermediate dataset
+- output/processed_data.csv - Processed dataset after changes in descriptive names/variables
+- output/tidy_dataset.csv - Final tidy dataset containing averages for each subject and activity combination
 
 ## How to Run
 
