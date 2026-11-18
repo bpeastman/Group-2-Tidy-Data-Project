@@ -40,33 +40,66 @@ measurements were retained.
 Selected measurement features: 66
 
 ### Task 3 — Descriptive Activity Names
-Status: Pending
+Status: Complete
 
-TODO: Document the replacement of numeric activity
-codes with descriptive activity names.
+Numeric activity codes were replaced with
+descriptive activity names using the original
+activity_labels.txt file.
+
+The six activity names are:
+
+1. WALKING
+2. WALKING_UPSTAIRS
+3. WALKING_DOWNSTAIRS
+4. SITTING
+5. STANDING
+6. LAYING
+
+The activity_id column was removed after 
+the descriptive activity names were assigned.
 
 ### Task 4 — Descriptive Variable Names
-Status: Pending
+Status: Complete
 
-TODO: Document the final variable naming conventions.
+Original measurement variable names were cleaned
+and converted into descriptive, lowercase names
+using underscores. All abbreviations are written out.
+
+For instance, tBodyAcc-mean()-X becomes time_body_acceleration_mean_x
+and tBodyGyro-mean()-Z becomes time_body_gyroscope_mean_z.
 
 ### Task 5 — Tidy Dataset
-Status: Pending
+Status: Complete
 
-TODO: Describe how averages are calculated for each
-subject and activity combination.
+The processed dataset was grouped by subject and activity.
+
+For each subject and activity combination, the average
+was calculated using the dplyr package. 
+
+The resulting dataset contains one row for each subject
+and activity combination.
 
 ## 4. Variable Descriptions
 
 ### subject
-Identifier for each study participant.
+Description: Identifier for each study participant.
+Data type: Integer
+Values: 1-30
 
-### activity_id
-Numeric identifier representing the activity performed.
-This will be replaced with descriptive activity names.
+### activity
+Description: Describes the physical activity performed
+by the participant.
+Data type: Character
+Values:
+- WALKING
+- WALKING_UPSTAIRS
+- WALKING_DOWNSTAIRS
+- SITTING
+- STANDING
+- LAYING
 
 ### Measurement Variables
-66 mean and standard deviation measurement features.
+The dataset contains 66 mean and standard deviation measurement features.
 
 TODO: Document the final variable names, descriptions,
 units, and data types.

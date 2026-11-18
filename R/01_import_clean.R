@@ -200,4 +200,4 @@ write.csv(
 )
 
 cat("Intermediate dataset saved successfully.\n")
-cat("GROUP 2 - TASKS 1 AND 2 COMPLETE\n")
+cat("GROUP 2 - TASKS 1 AND 2 COMPLETE\n\n")
