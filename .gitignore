@@ -1,0 +1,13 @@
+
+
+# Original dataset and downloaded archives
+data/
+
+# R temporary files
+.Rhistory
+.RData
+.Rproj.user/
+
+# Windows temporary files
+Thumbs.db
+desktop.ini
