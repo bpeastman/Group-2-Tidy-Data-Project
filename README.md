@@ -33,7 +33,7 @@ The dataset contains:
 3. Validate the merged dataset.
 4. Export the intermediate dataset.
 
-### Tina — Tasks 3, 4, and 5 (Pending)
+### Tina — Tasks 3, 4, and 5 (Completed)
 1. Replace activity codes with descriptive names.
 2. Assign descriptive variable names.
 3. Create the final tidy dataset containing averages
@@ -76,10 +76,9 @@ and extracts it if necessary.
 
 ## Project Status
 
-Tasks 1 and 2 are complete.
+Tasks 1-5 and the final tidy dataset are complete.
 
-Tasks 3–5, the final tidy dataset, and the completed
-CodeBook.md are pending group collaboration.
+The completed CodeBook.md and README.md are pending.
 
 ## Data Source
 
