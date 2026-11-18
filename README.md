@@ -33,7 +33,7 @@ The dataset contains:
 3. Validate the merged dataset.
 4. Export the intermediate dataset.
 
-### Tina — Tasks 3, 4, and 5 (Pending)
+### Tina — Tasks 3, 4, and 5 (Completed)
 1. Replace activity codes with descriptive names.
 2. Assign descriptive variable names.
 3. Create the final tidy dataset containing averages
@@ -49,9 +49,13 @@ The dataset contains:
 
 - GroupWork.R — Main R script
 - R/01_import_clean.R — Tasks 1 and 2
+- R/02_descriptive_names_variables.R - Tasks 3 and 4
+- R/03_create_tidy_dataset.R - Task 5
 - README.md — Project documentation
 - CodeBook.md — Dataset codebook
 - output/merged_mean_std.csv — Intermediate dataset
+- output/processed_data.csv - Processed dataset after changes in descriptive names/variables
+- output/tidy_dataset.csv - Final tidy dataset containing averages for each subject and activity combination
 
 ## How to Run
 
@@ -76,10 +80,9 @@ and extracts it if necessary.
 
 ## Project Status
 
-Tasks 1 and 2 are complete.
+Tasks 1-5 and the final tidy dataset are complete.
 
-Tasks 3–5, the final tidy dataset, and the completed
-CodeBook.md are pending group collaboration.
+The completed CodeBook.md and README.md are pending.
 
 ## Data Source
 
