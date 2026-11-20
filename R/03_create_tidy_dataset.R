@@ -1,54 +1,43 @@
-
-
 # ============================================================
-# REPRODUCIBLE RESEARCH - GROUP 2
-# Tina Or, Brian Punch-Eastman, Jared Johnson
-# Data Cleaning and Tidy Data Preparation
-#
-# TASK 5: Tidy Dataset
+# GROUP 2 - DATA CLEANING AND TIDY DATA PREPARATION
+# TASK 5: Create the independent tidy summary dataset
 # ============================================================
 
-# Install required libraries if not already installed
 if (!requireNamespace("dplyr", quietly = TRUE)) {
   install.packages("dplyr")
 }
-
-# Load required libraries
 library(dplyr)
 
+processed_data <- read.csv(
+  "output/processed_data.csv",
+  check.names = FALSE,
+  stringsAsFactors = FALSE
+)
 
-# TASK 5 -  Create final tidy dataset 
+measurement_names <- setdiff(names(processed_data), c("subject", "activity"))
+if (length(measurement_names) != 66) {
+  stop("Expected 66 measurement variables; found ", length(measurement_names))
+}
 
-## load the processed dataset from Tasks 3 and 4
-processed_data <- read.csv("output/processed_data.csv")
-
-## calculate averages for each subject and activity combination
 tidy_data <- processed_data %>%
   group_by(subject, activity) %>%
   summarise(
-    across(
-      where(is.numeric),
-      ~ mean(.x, na.rm = TRUE)
-    ),
+    across(all_of(measurement_names), ~ mean(.x, na.rm = TRUE)),
     .groups = "drop"
   ) %>%
   arrange(subject, activity)
 
-## export final tidy dataset
-write.csv(
-  tidy_data,
-  "output/tidy_dataset.csv",
-  row.names = FALSE
+# Validate one row for each of 30 subjects x 6 activities.
+stopifnot(
+  nrow(tidy_data) == 180,
+  ncol(tidy_data) == 68,
+  n_distinct(tidy_data$subject) == 30,
+  n_distinct(tidy_data$activity) == 6,
+  !anyDuplicated(tidy_data[c("subject", "activity")]),
+  !anyNA(tidy_data)
 )
 
-## validate final dataset
-cat("Final Tidy Dataset Dimensions:\n")
-cat("Rows: ", nrow(tidy_data), "\n")
-cat("Columns: ", ncol(tidy_data), "\n")
-
-cat("Number of observations per activity:\n")
-cat(as.character(capture.output(table(tidy_data$activity))), sep = "\n")
-
-
-cat("GROUP 2 - TASK 5 COMPLETE\n")
-cat("Final tidy dataset saved to output/tidy_dataset.csv\n")
+write.csv(tidy_data, "output/tidy_dataset.csv", row.names = FALSE)
+cat("Final tidy dataset dimensions: ", nrow(tidy_data), " rows x ",
+    ncol(tidy_data), " columns\n", sep = "")
+cat("TASK 5 COMPLETE - output/tidy_dataset.csv created\n")
